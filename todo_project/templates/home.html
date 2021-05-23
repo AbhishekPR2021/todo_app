@@ -1,0 +1,55 @@
+{% extends 'base.html' %}
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="banner">
+                    <div class="banner-text">
+                        <h2>ToDo</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <form method="post">
+                    {% csrf_token %}
+                        <div class="p-3 shadow">
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="item" placeholder="enter name"><br>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="pri" placeholder="enter priority"><br>
+                            </div>
+                             <div class="form-group">
+                                <input type="date" class="form-control" name="date" placeholder="enter date"><br>
+                            </div>
+                             <input type="submit" class="btn btn-primary">
+                        </div>
+                </form>
+            </div>
+
+            <div class="col-md-6">
+            {% for i in k %}
+                <div class="shadow card">
+                    <div class="card body">
+
+                        <ul class="list-group list-group-numbered">
+                          <li class="list-group-item d-flex justify-content-between align-items-start">
+                            <div class="ms-2 me-auto">
+                                <div class="fw-bold"><a href="{% url 'details' i.id%}" >{{i.item}}</a></div>
+                              <div class="fw-bold">{{i.date }}</div>
+                                <a href="{% url 'delete' i.id %}" class="btn btn-danger">Delete</a>
+                                <a href="{% url 'update' i.id %}" class="btn btn-success">Update</a>
+
+                            </div>
+                            <span class="badge bg-primary rounded-pill">{{i.priority}}</span>
+                          </li>
+                        </ul>
+                    </div>
+                </div>
+            {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,10 @@
+.banner{
+    background-color:dimgrey;
+    width:100%;
+    height:200px;
+    margin-bottom:50px;
+}
+.banner-text{
+   text-align:center;
+   color:white;
+}
